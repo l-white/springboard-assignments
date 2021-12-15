@@ -180,32 +180,6 @@ Examples:
     filterByValue([{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele", isCatOwner: true}], 'isCatOwner') // [{first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Colt', last:"Steele", isCatOwner: true}]
 */
 
-function filterByValue(arr, key) {
-    return arr.filter(item => item[key]);
-    //return key;
-}
-
-const arrOfNames = [{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele", isCatOwner: true}];
-console.log(arrOfNames.filter(item => item.isCatOwner));
-console.log(filterByValue([{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele", isCatOwner: true}], 'isCatOwner'));
-
-/*
-Write a function called find which accepts an array and a value and returns the first element in the array that has the same value as the second parameter or undefined if the value is not found in the array.
-
-Examples:
-    find([1,2,3,4,5], 3) // 3
-    find([1,2,3,4,5], 10) // undefined
-*/
-
-function find(arr, searchValue) {
-    return arr.indexOf(searchValue) ? arr.filter(x => x === searchValue).join('') : undefined;
-}
-
-console.log(find([1,2,3,4,5], 3));
-console.log(find([1,2,3,4,5], 10));
-
-console.log([1,2,3,4,5].indexOf(3));
-
 
 /*
 Write a function called removeVowels which accepts a string and returns a new string with all of the vowels (both uppercased and lowercased) removed. Every character in the new string should be lowercased.
@@ -227,3 +201,71 @@ return str.toLowerCase().replace(/[aeiou]/gi, '');
 }
 
 console.log(removeVowels('TIM'));
+
+/*
+Write a function called find which accepts an array and a value and returns the first element in the array that has the same value as the second parameter or undefined if the value is not found in the array.
+
+Examples:
+    find([1,2,3,4,5], 3) // 3
+    find([1,2,3,4,5], 10) // undefined
+*/
+
+function find(arr, searchValue) {
+    //return arr.indexOf(searchValue) ? arr.filter(x => x === searchValue).join('') : 'undefined';
+    return arr.filter(x => x === searchValue)[0];
+    //return arr.indexOf(searchValue);
+}
+
+console.log(find([1,2,3,4,5], 3));
+console.log(find([1,2,3,4,5], 10));
+
+console.log([1,2,3,4,5].indexOf(3));
+
+function filterByValue(arr, key) {
+    return arr.filter(item => item[key]);
+    //return key;
+}
+
+const arrOfNames = [{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele", isCatOwner: true}];
+//console.log(arrOfNames.filter(item => item.isCatOwner));
+console.log(filterByValue([{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele", isCatOwner: true}], 'isCatOwner'));
+
+/*
+Write a function called findInObj which accepts an array of objects, a key, and some value to search for and returns the first found value in the array.
+
+Examples:
+    findInObj([{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele", isCatOwner: true}], 'isCatOwner',true) // {first: 'Tim', last:"Garcia", isCatOwner: true}
+*/
+
+function findInObj(arr, key, searchValue) {
+    /*return arr.filter(function(element) {
+        return element[key] === searchValue;
+      })[0];*/
+      return arr.filter(x => x[key] === searchValue)[0];
+}
+
+console.log(findInObj([{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele", isCatOwner: true}], 'isCatOwner',true));
+
+//console.log(findInObj([{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele", isCatOwner: true}], 'isCatOwner',true));
+
+
+//console.log([{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele", isCatOwner: true}].filter(x => x.isCatOwner)[0]);
+
+/*
+Write a function called addKeyAndValue which accepts an array of objects, a key, and a value and returns the array passed to the function with the new key and value added for each object 
+
+Examples:
+    addKeyAndValue([{name: 'Elie'}, {name: 'Tim'}, {name: 'Matt'}, {name: 'Colt'}], 'title', 'instructor') 
+    
+    // [{name: 'Elie', title:'instructor'}, {name: 'Tim', title:'instructor'}, {name: 'Matt', title:'instructor'}, {name: 'Colt', title:'instructor'}]
+
+*/
+function addKeyAndValue(arr,key,value){
+    //return arr.map(x => Object.assign({}, x, {key : value}));
+    arr.forEach(function(val) {
+        val[key] = value;
+      });
+      return arr;
+}
+
+console.log(addKeyAndValue([{name: 'Elie'}, {name: 'Tim'}, {name: 'Matt'}, {name: 'Colt'}], 'title', 'instructor'));

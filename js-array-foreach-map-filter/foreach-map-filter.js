@@ -48,6 +48,11 @@ Examples:
 
 */
 function addKeyAndValue(arr,key,value){
+    //return arr.map(x => Object.assign({}, x, {key : value}));
+    arr.forEach(function(item) {
+        item[key] = value;
+      });
+      return arr;
 }
 
 /*
@@ -145,9 +150,7 @@ Examples:
 */
 
 function find(arr, searchValue) {
-    //return arr.filter(x => x === searchValue);
-    //return arr.indexOf(searchValue) ? arr.filter(x => x === searchValue) : 'undefined';
-    //return arr.indexOf(searchValue) ? arr.filter(x => x === searchValue).join('') : undefined;
+    return arr.filter(x => x === searchValue)[0];
 }
 
 /*
@@ -157,7 +160,9 @@ Examples:
     findInObj([{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele", isCatOwner: true}], 'isCatOwner',true) // {first: 'Tim', last:"Garcia", isCatOwner: true}
 */
 
-function findInObj(arr, key, searchValue) {}
+function findInObj(arr, key, searchValue) {
+    return arr.filter(x => x[key] === searchValue)[0];
+}
 
 /*
 Write a function called removeVowels which accepts a string and returns a new string with all of the vowels (both uppercased and lowercased) removed. Every character in the new string should be lowercased.
@@ -170,7 +175,6 @@ Examples:
 
 function removeVowels(str) {
     return str.toLowerCase().replace(/[aeiou]/gi, '');
-    //return str.split('').map(s => s.replace(/[aeiou]/g, '')).join('');
 }
 
 /*
