@@ -2,8 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Load Calculator</title>
-    <script type="text/javascript" src="calculator.js"></script>
+    <title>Loan Calculator</title>
     <link rel="stylesheet" href="calculator.css">
   </head>
   <body>
@@ -14,15 +13,15 @@
       <form id="calc-form">
         <label>
           Loan Amount
-          <input type="text" id="loan-amount">
+          <input type="text" id="loan-amount" value="300000">
         </label>
         <label>
           Term in Years
-          <input type="text" id="loan-years">
+          <input type="text" id="loan-years" value="30">
         </label>
         <label>
           Yearly Rate
-          <input type="text" id="loan-rate">
+          <input type="text" id="loan-rate" value="7.5">
         </label>
         <button type="submit" id="calc-submit">Calculate</button>
       </form>
@@ -31,5 +30,6 @@
         <span id="monthly-payment"></span>
       </div>
     </section>
+    <script type="text/javascript" src="script.js"></script>
   </body>
 </html>
