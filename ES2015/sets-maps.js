@@ -18,8 +18,3 @@ const vowelCount = (string) => {
     }
     return map;
 }
-//let map = new Map();
-//console.log(map)
-console.log(vowelCount('awesome'));
-console.log(vowelCount('Colt'));
-console.log(vowelCount('laura'));
