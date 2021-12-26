@@ -23,8 +23,6 @@ function makeBoard() {
   return board;
 }
 
-//const piece = document.getElementsByClassName('piece');
-
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
 function makeHtmlBoard() {
@@ -40,13 +38,12 @@ function makeHtmlBoard() {
     headCell.setAttribute("id", x);
     top.append(headCell);
   }
-  //htmlBoard.append(piece);
   htmlBoard.append(top);
 
   // TODO: add comment for this code
   for (let y = 0; y < HEIGHT; y++) {
     const row = document.createElement("tr");
-    for (var x = 0; x < WIDTH; x++) {
+    for (let x = 0; x < WIDTH; x++) {
       const cell = document.createElement("td");
       cell.setAttribute("id", `${y}-${x}`);
       row.append(cell);
@@ -63,16 +60,21 @@ function findSpotForCol(x) {
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
-const piece = document.getElementsByClassName('piece');
-const div = document.createElement('div');
+
+
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
+  // This function should add a div inside the correct td cell in the HTML game board. This div should have the piece class on it, and should have a class for whether the current player is 1 or 2, like p1 or p2.
+  const td = document.getElementById(`${y}-${x}`);
+  const div = document.createElement('div');
+  div.classList.add('piece');
+  if (currPlayer === 1){
+    div.classList.add('p1');
+  } else {
+    div.classList.add('p2');
+  }
   
-  const td = document.getElementById('5-0');
-  td.classList.add('piece');
-  td.classList.add('p1');
-  //td.removeEventListener('click', handleClick);
-  return td;
+  td.append(div);
 }
 
 /** endGame: announce game end */
@@ -86,13 +88,13 @@ function endGame(msg) {
 function handleClick(evt) {
   // get x from ID of clicked cell
   const x = +evt.target.id;
-
+  
   // get next spot in column (if none, ignore click)
   const y = findSpotForCol(x);
+  console.log(x, y);
   if (y === null) {
     return;
-  }
-
+  }  
   // place piece in board and add to HTML table
   // TODO: add line to update in-memory board
   placeInTable(y, x);
@@ -107,6 +109,11 @@ function handleClick(evt) {
 
   // switch players
   // TODO: switch currPlayer 1 <-> 2
+  if (currPlayer === 1){
+    currPlayer = 2;
+  } else {
+    currPlayer = 1;
+  }
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
