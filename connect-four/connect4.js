@@ -56,12 +56,59 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 0
-  //Right now, the game drops always drops a piece to the top of the column, even if a piece is already there. Fix this function so that it finds the lowest empty spot in the game board and returns the y coordinate (or null if the column is filled).
-  for (let i = 0; i <= HEIGHT; i++){
+  
+  /*for (let i = 0; i <= HEIGHT; i++){
     console.log(board[i]);
     console.log(x);
+  }*/
+  // loop backwards through columns in board
+  //let arr = [];
+/*  for (let i = HEIGHT-1; i >= 0; i--){
+    if (board[i].classList.contains('piece')){
+      return i;
+    } else {
+      return null;
+    }
+  }*/
+  //console.log(arr);
+  //console.log(x);
+  //console.log(div.classList.contains('piece'));
+
+  // check if innerHTML === '' 
+  // if board item is empty, innerHTML === ''
+  // if it's not empty, item.innerHTML !== ''
+  //const td = document.getElementById(`${y}-${x}`);
+  //console.log(td);
+
+  //Right now, the game drops always drops a piece to the top of the column, even if a piece is already there. Fix this function so that it finds the lowest empty spot in the game board and returns the y coordinate (or null if the column is filled).
+  console.log(x);
+  
+  //console.log(board[x])
+  
+  const currPiece = document.getElementById(`${HEIGHT-1}-${x}`);
+  const otherPiece = document.getElementById(`${HEIGHT-2}-${x}`);
+  const nextPiece = document.getElementById(`${HEIGHT-3}-${x}`);
+  const pieceAfterNext = document.getElementById(`${HEIGHT-4}-${x}`);
+  const almostFinalPiece = document.getElementById(`${HEIGHT-5}-${x}`);
+  const topPiece = document.getElementById(`${HEIGHT-6}-${x}`);
+  console.log(currPiece);
+
+  if (currPiece.innerHTML === ''){
+    return HEIGHT -1;
+  } else if (otherPiece.innerHTML === '') {
+    return HEIGHT - 2;
   }
-  return 0;
+  else if (nextPiece.innerHTML === ''){
+    return HEIGHT - 3;
+  } else if (pieceAfterNext.innerHTML === ''){
+    return HEIGHT - 4;
+  } else if (almostFinalPiece.innerHTML === ''){
+    return HEIGHT - 5;
+  } else if (topPiece.innerHTML === ''){
+    return HEIGHT - 6;
+  } else {
+    return null;
+  }
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
@@ -80,12 +127,14 @@ function placeInTable(y, x) {
   }
   
   td.append(div);
+  //console.log(div.classList.contains('piece'));
 }
 
 /** endGame: announce game end */
 
 function endGame(msg) {
   // TODO: pop up alert message
+  alert(msg);
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -112,9 +161,10 @@ function handleClick(evt) {
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
-  if (board.every(row => row.every(cell => cell === !'empty'))){
-    alert('Game over');
-  }
+  //if (board.every(row => row.every(cell => cell))) {
+    //return endGame('Tie!');
+    //alert('Tie!');
+  //}
   // switch players
   // TODO: switch currPlayer 1 <-> 2
   // change to do-while loop?
