@@ -56,6 +56,11 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 0
+  //Right now, the game drops always drops a piece to the top of the column, even if a piece is already there. Fix this function so that it finds the lowest empty spot in the game board and returns the y coordinate (or null if the column is filled).
+  for (let i = 0; i <= HEIGHT; i++){
+    console.log(board[i]);
+    console.log(x);
+  }
   return 0;
 }
 
@@ -97,6 +102,7 @@ function handleClick(evt) {
   }  
   // place piece in board and add to HTML table
   // TODO: add line to update in-memory board
+  board[y][x] = currPlayer;
   placeInTable(y, x);
 
   // check for win
@@ -106,9 +112,12 @@ function handleClick(evt) {
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
-
+  if (board.every(row => row.every(cell => cell === !'empty'))){
+    alert('Game over');
+  }
   // switch players
   // TODO: switch currPlayer 1 <-> 2
+  // change to do-while loop?
   if (currPlayer === 1){
     currPlayer = 2;
   } else {
