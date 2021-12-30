@@ -9,18 +9,16 @@ const WIDTH = 7;
 const HEIGHT = 6;
 
 let currPlayer = 1; // active player: 1 or 2
-const board = new Array(WIDTH); // array of rows, each row is array of cells  (board[y][x])
+let board = []; // array of rows, each row is array of cells  (board[y][x])
 
 /** makeBoard: create in-JS board structure:
- *    board = array of rows, each row is array of cells  (board[y][x])
+ *   board = array of rows, each row is array of cells  (board[y][x])
  */
 
 function makeBoard() {
-  // TODO: set "board" to empty HEIGHT x WIDTH matrix array
-  for (let i = 0; i < WIDTH; i++){
-    board[i] = new Array(HEIGHT);
+  for (let y = 0; y < HEIGHT; y++) {
+    board.push(Array.from({ length: WIDTH }));
   }
-  return board;
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
@@ -55,36 +53,6 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // TODO: write the real version of this, rather than always returning 0
-  
-  /*for (let i = 0; i <= HEIGHT; i++){
-    console.log(board[i]);
-    console.log(x);
-  }*/
-  // loop backwards through columns in board
-  //let arr = [];
-/*  for (let i = HEIGHT-1; i >= 0; i--){
-    if (board[i].classList.contains('piece')){
-      return i;
-    } else {
-      return null;
-    }
-  }*/
-  //console.log(arr);
-  //console.log(x);
-  //console.log(div.classList.contains('piece'));
-
-  // check if innerHTML === '' 
-  // if board item is empty, innerHTML === ''
-  // if it's not empty, item.innerHTML !== ''
-  //const td = document.getElementById(`${y}-${x}`);
-  //console.log(td);
-
-  //Right now, the game drops always drops a piece to the top of the column, even if a piece is already there. Fix this function so that it finds the lowest empty spot in the game board and returns the y coordinate (or null if the column is filled).
-  console.log(x);
-  
-  //console.log(board[x])
-  
   const currPiece = document.getElementById(`${HEIGHT-1}-${x}`);
   const otherPiece = document.getElementById(`${HEIGHT-2}-${x}`);
   const nextPiece = document.getElementById(`${HEIGHT-3}-${x}`);
@@ -115,8 +83,6 @@ function findSpotForCol(x) {
 
 
 function placeInTable(y, x) {
-  // TODO: make a div and insert into correct table cell
-  // This function should add a div inside the correct td cell in the HTML game board. This div should have the piece class on it, and should have a class for whether the current player is 1 or 2, like p1 or p2.
   const td = document.getElementById(`${y}-${x}`);
   const div = document.createElement('div');
   div.classList.add('piece');
@@ -127,7 +93,6 @@ function placeInTable(y, x) {
   }
   
   td.append(div);
-  //console.log(div.classList.contains('piece'));
 }
 
 /** endGame: announce game end */
@@ -160,26 +125,10 @@ function handleClick(evt) {
   }
 
   // check for tie
-  /*
-  if (board.every(row => row.every(cell => cell.innerHTML !== ''))){
-    alert('Tie');
-  }*/
-  /*if (board.every(row => row.every(Boolean))) {
-    return endGame("It's a draw!");
-  }*/
+  if (board.every(row => row.every(cell => cell === 1 || cell === 2))){
+    return endGame('Tie');
+  }
 
-  // TODO: check if all cells in board are filled; if so call, call endGame
-  /*if (board.every(row => row.every(cell => !cell))) {
-    return endGame('tie');
-  }*/
-  /*for(var i = 0; i < board.length; i++) {
-    var cube = board[i];
-    for(var j = 0; j < cube.length; j++) {
-        if (!board[i][j].innerHTML){
-          alert('tie');
-        }
-    }
-}*/
   // switch players
   // TODO: switch currPlayer 1 <-> 2
   // change to do-while loop?
