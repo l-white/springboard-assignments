@@ -5,6 +5,10 @@
  * board fills (tie)
  */
 
+const resetBtn = document.querySelector('.reset-button')
+
+
+
 const WIDTH = 7;
 const HEIGHT = 6;
 
@@ -17,8 +21,9 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
 
 function makeBoard() {
   for (let y = 0; y < HEIGHT; y++) {
-    board.push(Array.from({ length: WIDTH }));
+    board.push(Array(WIDTH).fill(null));
   }
+  return board;
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
@@ -174,3 +179,14 @@ function checkForWin() {
 }
 makeBoard();
 makeHtmlBoard();
+
+function reset(){
+  const htmlBoard = document.querySelector("#board");
+  htmlBoard.innerHTML = '';
+  board = [];
+  makeBoard();
+  makeHtmlBoard();
+  currPlayer = 1;
+}
+
+resetBtn.addEventListener('click', reset )
