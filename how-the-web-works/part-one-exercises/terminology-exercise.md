@@ -31,6 +31,21 @@ A header is included in a request and a response. In a request, the hostname we'
 The request / response cycle happens.
 
 ## Part Two: Practice Tools
+1. Using curl, make a GET request to the icanhazdadjoke.com API to find all jokes involving the word “pirate”
+curl -H "Accept: application/json" "https://icanhazdadjoke.com/search?term=pirate" 
+{"current_page":1,
+"limit":20,
+"next_page":1,
+"previous_page":1,
+"results":[
+  {"id":"SvzIBAQS0Dd",
+  "joke":"What did the pirate say on his 80th birthday? Aye Matey!"},
+  {"id":"2gii3LeN7Ed",
+  "joke":"Why couldn't the kid see the pirate movie? Because it was rated arrr!"},
+  {"id":"QuscibaMClb",
+  "joke":"What does a pirate pay for his corn? A buccaneer!"},{"id":"SnOf2gqjiqc",
+  "joke":"Why are pirates called pirates? Because they arrr!"},{"id":"exXSCtkOKe",
+  "joke":"Why do pirates not know the alphabet? They always get stuck at \"C\"."}],"search_term":"pirate","status":200,"total_jokes":5,"total_pages":1}
 
-Use dig to find the IP address for icanhazdadjoke.com. 
+2. Use dig to find the IP address for icanhazdadjoke.com. 
 There are two: 104.21.37.176 and 172.67.211.64.
