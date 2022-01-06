@@ -5,9 +5,7 @@
  * board fills (tie)
  */
 
-const resetBtn = document.querySelector('.reset-button')
-
-
+const resetBtn = document.querySelector('.reset-button');
 
 const WIDTH = 7;
 const HEIGHT = 6;
@@ -96,7 +94,6 @@ function placeInTable(y, x) {
   } else {
     div.classList.add('p2');
   }
-  
   td.append(div);
 }
 
