@@ -9,9 +9,7 @@ def same_frequency(num1, num2):
         
         >>> same_frequency(1212, 2211)
         True
-    """
-    #num1_lst = str(num1)
-    
+    """    
     num1_freq = {}
     for i in str(num1):
         if (i in num1_freq):
