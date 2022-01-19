@@ -37,18 +37,13 @@ def includes(collection, sought, start=None):
             else:
                 return False
     else:"""
-    if type(collection) is list or type(collection) is str or type(collection) is tuple:
-        for item in collection:
-            if item in collection and start != None and collection.index(item) >= start:
-                return True
-            else:
-                return False
-    else:
-        for item in collection:
-            if item in collection:
-                return True
-            else:
-                return False
+    if isinstance(collection, dict):
+        return sought in collection.values()
+
+    if start is None or isinstance(collection, set):
+        return sought in collection
+
+    return sought in collection[start:]
 
 print(includes([1, 2, 3], 1)) #True
 print(includes([1, 2, 3], 1, 2)) #False
