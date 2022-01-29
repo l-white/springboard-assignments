@@ -24,34 +24,8 @@ $.get('http://numbersapi.com/5/math', function(data){
 })
 
 $.get('http://numbersapi.com/1,3,5', function(data){
-  /*console.log(data);
-  console.log(JSON.parse(data))
-  console.log(JSON.parse(data)[1])
-  console.log(JSON.parse(data)[3])
-  console.log(JSON.parse(data)[5])*/
   p4.append(`${JSON.parse(data)[1]} ${JSON.parse(data)[3]}  ${JSON.parse(data)[5]}`);
 })
-
-//let fourFacts = [];
-/*
-for (let i = 1; i < 5; i++){
-  $.get('http://numbersapi.com/4', function(data){
-  console.log(i, data);
-  //fourFacts.push(data)
-  body.append(data);
-})
-}*/
-/*
-Promise.all(fourFacts)
-  .then(factsArr => {
-    for (let res of factsArr){
-      console.log(res.data)
-      //return factsArr;
-      console.log(factsArr)
-    }
-  }).catch(err => console.log(err));
-*/
-//console.log(fourFacts);
 
 
 Promise.all(
