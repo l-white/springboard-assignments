@@ -2,6 +2,26 @@ console.log('JS is connected')
 
 const section = document.getElementById('section');
 
+const pokeNames = []
+
+async function fetchPokeData(){
+    let res = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=151')
+    //console.log(res.data.results)
+    const pokes = res.data.results
+    //pokes.forEach(poke => pokeNames.push(poke['name']))
+        //console.log(poke['name']))
+    console.log(pokes)
+    pokes.forEach(poke => pokeNames.push(poke['name']))
+}
+//pokeNames.push('hello')
+console.log(pokeNames)
+
+
+async function getInfoOnPoke(){
+    let res = await axios.get('https://pokeapi.co/api/v2/pokemon/clefairy/')
+    console.log(res.data)
+}
+
 class Pokemon {
     constructor(id) {
         this.id = id;
@@ -13,7 +33,7 @@ class Pokemon {
         for (let type of res.data.types){
             this.types.push(type.type.name)
         }
-        console.log(res.data.sprites.front_default)
+        console.log(res.data)
     }
     async getUrl(){
         let res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${this.id}`);
@@ -37,6 +57,13 @@ class Pokemon {
         //section.append(name)
         section.append(pokeImage)
     }
+    async getName(){
+        let res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${this.id}`);
+        let name = document.createElement('p');
+        name.innerHTML = res.data.name;
+        section.append(name)
+    }
+    
     /*async getName(){
         let res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${this.id}`);
         let name = document.createElement('p');
@@ -46,16 +73,19 @@ class Pokemon {
     }*/
 }
 
+
 // Corss-Origin Blocking - get image from elsewhere in response
 //const img = document.createElement('img');
-const poke = new Pokemon(45)
-const anotherPoke = new Pokemon(3)
-const thirdPoke = new Pokemon(91)
+//const poke = new Pokemon(45)
+//const anotherPoke = new Pokemon(3)
+//const thirdPoke = new Pokemon(91)
 //img.src = poke.getImage()
 //console.log(poke.getImage())
 //img.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/45.png'
 //img.src = poke.getImage()
 //section.append(poke.getImage())
-poke.getImage()
-anotherPoke.getImage()
-thirdPoke.getImage()
+//poke.getImage()
+//anotherPoke.getImage()
+//thirdPoke.getImage()
+fetchPokeData()
+getInfoOnPoke()
