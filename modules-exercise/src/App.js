@@ -1,25 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
-import fruits from './components/foods';
-import {choice, remove} from './components/helpers';
+import {choice, remove} from './components/Helper';
+
+let item = choice();
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>I'd like one {item}, please.</p>
+      <p>Here you go. Here is one {item}.</p>
+      <p>This {item} is delicious! May I have another?</p>
+      <p>I'm sorry, that was the last {item}. Here are the rest of our options: </p>
+      <div>{remove(item)}</div>
     </div>
   );
 }
