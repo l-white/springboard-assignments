@@ -1,4 +1,4 @@
-import fruits from "./Fruits";
+import fruits from "./foods";
 
 function choice(){
     return(fruits[Math.floor(Math.random()*fruits.length)]); 
