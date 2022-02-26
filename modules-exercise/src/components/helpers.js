@@ -1,15 +1,16 @@
-import React from 'react';
+import fruits from "./foods";
 
-function choice(items){
-  return (items[Math.floor(Math.random()*items.length)]);
+function choice(){
+    return(fruits[Math.floor(Math.random()*fruits.length)]); 
 }
 
-function remove(item, items){
-  const idx = items.indexOf(item);
-  return (items.indexOf(item) === -1 ? undefined: items.slice(idx, 1));
+function remove(item){
+    const remainingFruits = fruits.filter(e => e !== item);
+    const listItems = remainingFruits.map((remainingFruit, id) => <li key={id}>{remainingFruit}</li>)
+    
+    return (
+        <ul>{listItems}</ul>
+    );
 }
 
-export {
-  choice, remove
-}
-
+export {choice, remove};
